@@ -1,8 +1,12 @@
 #include "strela.h"
 #include "ui_strela.h"
+#include "boat.h"
+#include "additem.h"
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QSqlQueryModel>
+#include <QSqlRecord>
 
 
 
@@ -14,6 +18,7 @@ Strela::Strela(QWidget *parent) :
         //
         MBox = NULL;
         connectBD();
+        reloadTable();
     }
 
 Strela::~Strela()
@@ -36,7 +41,30 @@ void Strela::connectBD(){
     if (!sdb.open()) {
         ShowMessage(sdb.lastError().text(),"ERROR");
     }
-    else{
-        ShowMessage("Connection success","OK");
-    }
+}
+
+void Strela::reloadTable(){
+    QSqlQueryModel *model = new QSqlQueryModel;
+    QSqlQuery query;
+    query.exec("SELECT boat.id, type.name, boat.model, boat.creater FROM boat INNER JOIN type on boat.type = type.id");
+    model->setQuery(query);
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("Type"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("Model"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("Creater"));
+    ui->itemList->setModel(model);
+}
+
+void Strela::on_exitAction_triggered()
+{
+    exit(0);
+}
+
+// добавление элемента в базу
+void Strela::on_addItemButton_clicked()
+{
+    QSqlQuery query;
+    Boat *b = new Boat();
+    addItem *instance=new addItem(this);
+    instance->show();
 }

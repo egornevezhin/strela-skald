@@ -14,9 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         strela.cpp \
-    order.cpp
+    boat.cpp \
+    additem.cpp
 
 HEADERS  += strela.h \
-    order.h
+    boat.h \
+    additem.h
 
-FORMS    += strela.ui
+FORMS    += strela.ui \
+    additem.ui
