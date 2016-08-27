@@ -18,8 +18,7 @@ public:
     Boat();
 
     // обьявим переменные класса
-    int weight;
-    QString id, type, model, creater, liable, place, other;
+    QString id, type, model, creater, liable, place, other, weight;
     QDate date;
     QImage photo;
 

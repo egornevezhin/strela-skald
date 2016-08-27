@@ -1,6 +1,7 @@
 #include "additem.h"
 #include "ui_additem.h"
 #include "boat.h"
+#include "strela.h"
 #include <QFileDialog>
 #include <QImage>
 #include <QVector>
@@ -42,11 +43,11 @@ void addItem::on_buttonBox_accepted()
     b.id = ui->boatId->text();
     b.liable = ui->boatLiable->text();
     b.model = ui->boatModel->text();
-    b.other = ui->boatModel->text();
+    b.other = ui->boatOther->text();
     b.place = ui->boatPlace->text();
 
     b.type = ui->boatType->currentText();
-    b.weight = ui->boatWeight->text().toInt();
+    b.weight = ui->boatWeight->text();
     b.save();
 }
 

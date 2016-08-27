@@ -39,7 +39,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Идентификационный номер </string>
+    <string>Идентификационный номер</string>
+   </property>
+   <property name="placeholderText">
+    <string notr="true"/>
    </property>
   </widget>
   <widget class="QComboBox" name="boatType">
@@ -134,6 +137,9 @@
    </property>
    <property name="accelerated">
     <bool>false</bool>
+   </property>
+   <property name="displayFormat">
+    <string>yyyy-MM-dd</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="boatOther">

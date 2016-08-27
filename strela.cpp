@@ -64,7 +64,6 @@ void Strela::on_exitAction_triggered()
 void Strela::on_addItemButton_clicked()
 {
     QSqlQuery query;
-    Boat *b = new Boat();
     addItem *instance=new addItem(this);
     instance->show();
 }
