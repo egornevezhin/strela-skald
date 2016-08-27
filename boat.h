@@ -38,6 +38,7 @@ public:
 
 public slots:
     void save();
+    void clear();
     QVector<QString> getAllTypes();
 
 };

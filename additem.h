@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QGraphicsScene>
 #include "boat.h"
+#include <strela.h>
 
 namespace Ui {
 class addItem;
@@ -28,6 +29,7 @@ private slots:
 private:
     Ui::addItem *ui;
     Boat b;
+    Strela s;
 };
 
 #endif // ADDITEM_H

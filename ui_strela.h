@@ -61,6 +61,8 @@ public:
         itemList->setLineWidth(2);
         itemList->setMidLineWidth(1);
         itemList->setAlternatingRowColors(false);
+        itemList->setSelectionMode(QAbstractItemView::SingleSelection);
+        itemList->setSelectionBehavior(QAbstractItemView::SelectRows);
         itemList->setTextElideMode(Qt::ElideLeft);
         itemList->horizontalHeader()->setCascadingSectionResizes(false);
         itemList->horizontalHeader()->setDefaultSectionSize(130);

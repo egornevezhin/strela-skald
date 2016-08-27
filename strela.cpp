@@ -60,10 +60,23 @@ void Strela::on_exitAction_triggered()
     exit(0);
 }
 
-// добавление элемента в базу
 void Strela::on_addItemButton_clicked()
 {
     QSqlQuery query;
     addItem *instance=new addItem(this);
     instance->show();
+}
+
+void Strela::on_deleteItemButton_clicked()
+{
+    QMessageBox::StandardButton reply;
+    QSqlQuery query;
+    reply = QMessageBox::question(this, "Удаление лодки", "Вы действительно хотите удалить запись?",
+                                  QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        int v = ui->itemList->selectionModel()->currentIndex().row();
+        QString id = ui->itemList->model()->data(ui->itemList->model()->index(0,v)).toString();
+        query.exec("DELETE FROM boat WHERE id =" + id);
+        this->reloadTable();
+    }
 }

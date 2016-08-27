@@ -34,13 +34,27 @@ void Boat::save(){
                this->date.toString() + "','" +
                this->liable + "','" +
                this->place + "','" +
-               "/photo/" + this->id + ".jpg" + "','" +
+               path + "/photo/" + this->id + ".jpg" + "','" +
                this->other +
                "')");
+    // отладка, потом удалить
     if(!query.exec()){
         error = query.lastError().text();
     }
 
+}
+
+void Boat::clear(){
+    this->creater = "";
+    this->date = QDate();
+    this->id = "";
+    this->liable = "";
+    this->model = "";
+    this->other = "";
+    this->photo = QImage();
+    this->place = "";
+    this->type = "";
+    this->weight = "";
 }
 
 // получение типов лодок

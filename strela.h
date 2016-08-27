@@ -23,11 +23,16 @@ private:
 private slots:
     void connectBD();
     void ShowMessage(QString messageText, QString Title);
-    void reloadTable();
 
 
     void on_exitAction_triggered();
     void on_addItemButton_clicked();
+
+    void on_deleteItemButton_clicked();
+
+public slots:
+    void reloadTable();
+
 };
 
 #endif // STRELA_H

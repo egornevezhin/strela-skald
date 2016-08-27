@@ -45,13 +45,13 @@ void addItem::on_buttonBox_accepted()
     b.model = ui->boatModel->text();
     b.other = ui->boatOther->text();
     b.place = ui->boatPlace->text();
-
     b.type = ui->boatType->currentText();
     b.weight = ui->boatWeight->text();
     b.save();
+    s.reloadTable();
 }
 
 void addItem::on_buttonBox_rejected()
 {
-
+    b.clear();
 }
