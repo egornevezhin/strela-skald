@@ -11,6 +11,7 @@ addItem::addItem(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::addItem)
     {
+
         ui->setupUi(this);
         QVector<QString> types = b.getAllTypes();
         for (int i = 0; i < types.size(); i++){
@@ -20,6 +21,7 @@ addItem::addItem(QWidget *parent) :
 
 addItem::~addItem()
 {
+    s.reloadTable();
     delete ui;
 }
 
@@ -48,7 +50,6 @@ void addItem::on_buttonBox_accepted()
     b.type = ui->boatType->currentText();
     b.weight = ui->boatWeight->text();
     b.save();
-    s.reloadTable();
 }
 
 void addItem::on_buttonBox_rejected()

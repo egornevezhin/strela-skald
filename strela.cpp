@@ -26,7 +26,6 @@ Strela::~Strela()
     delete ui;
 }
 
-// метод вывода сообщений
 void Strela::ShowMessage(QString messageText, QString Title)
 {
     MBox=new QMessageBox;
@@ -62,9 +61,9 @@ void Strela::on_exitAction_triggered()
 
 void Strela::on_addItemButton_clicked()
 {
-    QSqlQuery query;
     addItem *instance=new addItem(this);
     instance->show();
+
 }
 
 void Strela::on_deleteItemButton_clicked()
@@ -75,8 +74,10 @@ void Strela::on_deleteItemButton_clicked()
                                   QMessageBox::Yes|QMessageBox::No);
     if (reply == QMessageBox::Yes) {
         int v = ui->itemList->selectionModel()->currentIndex().row();
-        QString id = ui->itemList->model()->data(ui->itemList->model()->index(0,v)).toString();
+        QString id = ui->itemList->model()->data(ui->itemList->model()->index(v,0)).toString();
         query.exec("DELETE FROM boat WHERE id =" + id);
         this->reloadTable();
     }
 }
+
+
