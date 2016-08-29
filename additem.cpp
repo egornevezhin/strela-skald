@@ -7,7 +7,7 @@
 #include <QVector>
 #include <QString>
 
-addItem::addItem(QWidget *parent) :
+addItem::addItem(QWidget *parent, Strela *s) :
     QDialog(parent),
     ui(new Ui::addItem)
     {
@@ -17,11 +17,11 @@ addItem::addItem(QWidget *parent) :
         for (int i = 0; i < types.size(); i++){
             ui->boatType->addItem(types[i]);
         }
+    q = s;
     }
 
 addItem::~addItem()
 {
-    s.reloadTable();
     delete ui;
 }
 
@@ -50,6 +50,7 @@ void addItem::on_buttonBox_accepted()
     b.type = ui->boatType->currentText();
     b.weight = ui->boatWeight->text();
     b.save();
+    q->reloadTable();
 }
 
 void addItem::on_buttonBox_rejected()

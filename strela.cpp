@@ -61,9 +61,9 @@ void Strela::on_exitAction_triggered()
 
 void Strela::on_addItemButton_clicked()
 {
-    addItem *instance=new addItem(this);
+    Strela *s = this;
+    addItem *instance=new addItem(this, s);
     instance->show();
-
 }
 
 void Strela::on_deleteItemButton_clicked()

@@ -15,7 +15,7 @@ class addItem : public QDialog
     Q_OBJECT
 
 public:
-    explicit addItem(QWidget *parent = 0);
+    explicit addItem(QWidget *parent = 0, Strela *s = NULL);
     ~addItem();
 
 
@@ -29,7 +29,7 @@ private slots:
 private:
     Ui::addItem *ui;
     Boat b;
-    Strela s;
+    Strela* q;
 };
 
 #endif // ADDITEM_H
