@@ -62,7 +62,7 @@ void Strela::on_exitAction_triggered()
 void Strela::on_addItemButton_clicked()
 {
     Strela *s = this;
-    addItem *instance=new addItem(this, s);
+    addItem *instance=new addItem(this, s, false);
     instance->show();
 }
 
@@ -81,3 +81,12 @@ void Strela::on_deleteItemButton_clicked()
 }
 
 
+
+void Strela::on_itemList_doubleClicked(const QModelIndex &index)
+{
+    addItem *instance=new addItem(0, this, true);
+    QString id = ui->itemList->model()->data(ui->itemList->model()->index(index.row(),0)).toString();
+    instance->insertData(id);
+    instance->show();
+
+}

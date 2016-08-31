@@ -30,6 +30,8 @@ private slots:
 
     void on_deleteItemButton_clicked();
 
+    void on_itemList_doubleClicked(const QModelIndex &index);
+
 public slots:
     void reloadTable();
 

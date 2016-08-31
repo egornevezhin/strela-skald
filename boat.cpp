@@ -15,7 +15,7 @@ Boat::Boat()
 
 }
 
-void Boat::save(){
+void Boat::save(bool update){
     QSqlQuery query;
     QString error;
     query.exec("SELECT id FROM type WHERE name ='" + this->type + "'");
@@ -26,17 +26,33 @@ void Boat::save(){
 
     this->photo.save(path + "/photo/" + this->id + ".jpg");
 
-    query.prepare("INSERT INTO boat VALUES ('" + this->id + "','" +
-               idType + "','" +
-               this->model + "','" +
-               this->weight + "','" +
-               this->creater + "','" +
-               this->date.toString() + "','" +
-               this->liable + "','" +
-               this->place + "','" +
-               path + "/photo/" + this->id + ".jpg" + "','" +
-               this->other +
-               "')");
+    if (update) {
+        query.exec("DELETE FROM boat WHERE id =" + this->id);
+        query.prepare("INSERT INTO boat VALUES ('" + this->id + "','" +
+                   idType + "','" +
+                   this->model + "','" +
+                   this->weight + "','" +
+                   this->creater + "','" +
+                   this->date.toString() + "','" +
+                   this->liable + "','" +
+                   this->place + "','" +
+                   path + "/photo/" + this->id + ".jpg" + "','" +
+                   this->other +
+                   "')");
+    }
+    else {
+        query.prepare("INSERT INTO boat VALUES ('" + this->id + "','" +
+                   idType + "','" +
+                   this->model + "','" +
+                   this->weight + "','" +
+                   this->creater + "','" +
+                   this->date.toString() + "','" +
+                   this->liable + "','" +
+                   this->place + "','" +
+                   path + "/photo/" + this->id + ".jpg" + "','" +
+                   this->other +
+                   "')");
+    }
     // отладка, потом удалить
     if(!query.exec()){
         error = query.lastError().text();

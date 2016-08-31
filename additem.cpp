@@ -7,7 +7,7 @@
 #include <QVector>
 #include <QString>
 
-addItem::addItem(QWidget *parent, Strela *s) :
+addItem::addItem(QWidget *parent, Strela *s, bool update) :
     QDialog(parent),
     ui(new Ui::addItem)
     {
@@ -18,6 +18,7 @@ addItem::addItem(QWidget *parent, Strela *s) :
             ui->boatType->addItem(types[i]);
         }
     q = s;
+    this->update = update;
     }
 
 addItem::~addItem()
@@ -49,11 +50,27 @@ void addItem::on_buttonBox_accepted()
     b.place = ui->boatPlace->text();
     b.type = ui->boatType->currentText();
     b.weight = ui->boatWeight->text();
-    b.save();
+    b.save(this->update);
     q->reloadTable();
 }
 
 void addItem::on_buttonBox_rejected()
 {
     b.clear();
+}
+
+void addItem::insertData(QString id){
+    QSqlQuery query;
+    query.exec("SELECT * FROM boat WHERE id=" + id);
+    query.next();
+    ui->boatId->setText(query.value(0).toString());
+    ui->boatType->setCurrentIndex(query.value(1).toInt() - 1);
+    ui->boatModel->setText(query.value(2).toString());
+    ui->boatWeight->setText(query.value(3).toString());
+    ui->boatCreater->setText(query.value(4).toString());
+    ui->boatDate->setDate(query.value(5).toDate());
+    ui->boatLiable->setText(query.value(6).toString());
+    ui->boatPlace->setText(query.value(7).toString());
+    ui->labelPhoto->setPixmap(QPixmap(query.value(8).toString()).scaled(350,90,Qt::KeepAspectRatio,Qt::SmoothTransformation));
+    ui->boatOther->setText(query.value(9).toString());
 }
